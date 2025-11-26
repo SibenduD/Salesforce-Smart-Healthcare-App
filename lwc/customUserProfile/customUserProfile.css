@@ -1,0 +1,173 @@
+/* --- NEW ANIMATION KEYFRAMES --- */
+/* Shine effect for the card hover */
+@-webkit-keyframes shine-effect {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+@keyframes shine-effect {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+
+/* --- Main Card Style (Wallpaper) --- */
+.content-card {
+    background-image: url('https://raw.githubusercontent.com/SibenduD/Pulse-Point/main/patientDashboard.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 20px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* --- Light Glassmorphism Card (UPDATED) --- */
+.light-glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    font-family: system-ui, -apple-system, sans-serif;
+    color: #333;
+    
+    /* --- NEW: Required for shine effect --- */
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- NEW: Shine Pseudo-Element --- */
+.light-glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start off-screen */
+    width: 75%;
+    height: 100%;
+    
+    /* The shine itself */
+    background: linear-gradient(
+        to right, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%
+    );
+    
+    transform: skewX(-25deg); /* Angle the shine */
+    animation: none;
+    z-index: 1; /* Sits at the back, under the content */
+}
+
+/* --- NEW: Trigger shine on hover --- */
+.light-glass-card:hover::before {
+    animation: shine-effect 0.85s ease;
+}
+
+
+/* --- Layout (UPDATED) --- */
+/* Add z-index to ensure text is above the shine */
+.profile-grid, .bottom-section {
+    position: relative;
+    z-index: 2;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 150px 1fr; /* Profile pic column and details column */
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.pic-column {
+    text-align: center;
+}
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #FFFFFF;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.details-column {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 2rem;
+}
+
+.user-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0A1931;
+    margin: 0;
+}
+.user-title {
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 0.25rem;
+}
+
+.divider {
+    border: none;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 1rem 0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns for contact/company */
+    gap: 1.5rem;
+}
+
+.detail-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+}
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #333;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+.detail-item lightning-icon {
+    --sds-c-icon-color-foreground-default: #0072ff;
+    flex-shrink: 0; /* Stop icon from shrinking */
+}
+
+.bottom-section {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .profile-grid, .contact-grid, .bottom-section {
+        grid-template-columns: 1fr; /* Stack everything */
+    }
+    .details-column {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding-top: 1.5rem;
+    }
+    .pic-column {
+        text-align: left;
+    }
+}

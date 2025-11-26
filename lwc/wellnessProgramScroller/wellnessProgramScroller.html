@@ -1,0 +1,27 @@
+<template>
+    <div class="scroller-container">
+        <h1 class="main-title">Available Health Programs</h1>
+        
+        <div class="scrolling-wrapper">
+            <template if:true={programs.data}>
+                <template for:each={programs.data} for:item="program">
+                    <div key={program.Id} class="program-card">
+                        
+                        <img src={program.Image_URL__c} alt={program.Name} class="program-image" />
+
+                        <div class="program-info">
+                            <span class="category-tag">{program.Category__c}</span>
+                            <h2 class="program-name">{program.Name}</h2>
+                            <p class="program-desc">{program.Short_Description__c}</p>
+                        </div>
+
+                    </div>
+                </template>
+            </template>
+        </div>
+    </div>
+
+    <template if:true={programs.isLoading}>
+        <lightning-spinner alternative-text="Loading programs..." size="medium"></lightning-spinner>
+    </template>
+</template>

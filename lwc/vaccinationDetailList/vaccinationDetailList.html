@@ -1,0 +1,77 @@
+<template>
+    <div class="list-container">
+        
+        <h2 class="main-title">Your Vaccination History</h2>
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading records..." size="medium" variant="brand"></lightning-spinner>
+        </template>
+
+        <template if:true={vaccinations}>
+            <div class="card-list">
+                <template for:each={vaccinations} for:item="vax">
+                    
+                    <div key={vax.Id} class="vaccination-card">
+                        
+                        <div class="card-header" data-id={vax.Id} onclick={handleCardClick}>
+                            <h3 class="record-name">
+                                Record No: {vax.Name}
+                            </h3>
+                            <lightning-icon 
+                                icon-name="utility:chevrondown" 
+                                size="x-small" 
+                                class={vax.chevronClass}>
+                            </lightning-icon>
+                        </div>
+
+                        <div class={vax.contentClass}>
+                            <div class="content-wrapper">
+                                <div class="card-body">
+                                    <div class="detail-row">
+                                        <span class="vax-date">
+                                            Administered on: 
+                                            <lightning-formatted-date-time
+                                                value={vax.Date_Administered__c}
+                                                year="numeric"
+                                                month="long"
+                                                day="2-digit"
+                                            ></lightning-formatted-date-time>
+                                        </span>
+                                        <span class={vax.statusClass}>{vax.Approval_Status__c}</span>
+                                    </div>
+                                    <p class="detail-text" if:true={vax.programName}>
+                                        Program: {vax.programName}
+                                    </p>
+                                    <p class="detail-text" if:true={vax.visitName}>
+                                        Related Visit: {vax.visitName}
+                                    </p>
+                                </div>
+
+                                <div class="card-footer">
+                                    <span class="detail-flag breach" if:true={vax.Cold_Chain_Breach__c}>
+                                        <lightning-icon icon-name="utility:warning" size="x-small" variant="error"></lightning-icon>
+                                        Cold Chain Breach
+                                    </span>
+                                    <span class="detail-flag override" if:true={vax.Supervisor_Override__c}>
+                                        <lightning-icon icon-name="utility:check" size="x-small"></lightning-icon>
+                                        Supervisor Override
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </template>
+            </div>
+        </template>
+
+        <template if:true={isEmpty}>
+            <div class="empty-state">
+                <lightning-icon icon-name="utility:info" size="large"></lightning-icon>
+                <h3 class="empty-title">No Vaccination Records Found</h3>
+                <p class="empty-text">You do not have any vaccination records on file.</p>
+            </div>
+        </template>
+
+    </div>
+</template>

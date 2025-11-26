@@ -1,0 +1,143 @@
+/*
+ * NOTE: The @import rule has been REMOVED.
+ */
+
+/*
+ * This is the main container for the header.
+ */
+.header-container {
+    width: 100%;
+    padding: 0.75rem 1.5rem; /* 12px top/bottom, 24px left/right */
+    box-sizing: border-box;
+    background: transparent; /* Lets your pill background show through */
+    min-height: 80px; 
+    align-items: center; /* Ensures vertical centering */
+}
+
+/*
+ * --- Left Column: Logo & Brand ---
+ */
+.logo-brand-container {
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start; /* Align to the left */
+}
+
+.logo-container {
+    flex-shrink: 0; 
+    margin-right: 1rem; /* 16px space */
+}
+
+.logo-gif {
+    height: 50px; 
+    width: 50px;
+    border-radius: 50%; /* Circular logo */
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1); 
+    object-fit: cover; 
+}
+
+.brand-name {
+    color: #FFFFFF;
+    font-size: 1.75rem; /* 28px */
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+    
+    font-family: "Calibri", "Candara", "Segoe UI", "Arial", sans-serif;
+
+    -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+            animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
+/*
+ * --- Middle Column: Welcome Line ---
+ */
+.welcome-container {
+    text-align: center; 
+}
+
+.welcome-text {
+    color: #f0f0f0;
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Arial", sans-serif;
+    font-style: normal; 
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+    
+    position: relative;
+    overflow: hidden; /* This is required to contain the angled shine */
+}
+
+/*
+ * --- THIS IS THE UPDATED "SHINE" ---
+ * It still uses the angled bar, but the gradient
+ * itself now has smooth, faded edges.
+ */
+.welcome-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%; /* Start off-screen to the left */
+    width: 70%; /* Width of the shine */
+    height: 100%;
+    
+    /* * --- THIS IS THE FIX ---
+     * This new gradient fades in and fades out,
+     * creating the "smoother" edges you wanted.
+     */
+    background: linear-gradient(
+        90deg, 
+        rgba(255, 255, 255, 0) 0%,     /* Start: 100% transparent */
+        rgba(255, 255, 255, 0.6) 50%,  /* Middle: 60% white (the shine) */
+        rgba(255, 255, 255, 0) 100%   /* End: 100% transparent */
+    );
+    
+    /* This angles the shine */
+    transform: skewX(-25deg);
+    
+    /* This runs the animation */
+    animation: shine 5s linear 3s infinite;
+}
+
+/*
+ * --- Mobile Responsive ---
+ */
+@media (max-width: 768px) {
+    .logo-brand-container {
+        justify-content: center; 
+        margin-bottom: 0.5rem;
+    }
+    .welcome-container {
+        text-align: center;
+    }
+}
+
+
+/*
+ * ========================================
+ * ANIMATION DEFINITIONS
+ * ========================================
+ */
+
+/* Animation for the Brand Name */
+@-webkit-keyframes tracking-in-expand {
+  0% { letter-spacing: -0.5em; opacity: 0; }
+  40% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+@keyframes tracking-in-expand {
+  0% { letter-spacing: -0.5em; opacity: 0; }
+  40% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* This is the "shine" animation */
+@keyframes shine {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}

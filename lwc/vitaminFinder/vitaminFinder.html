@@ -1,0 +1,59 @@
+<template>
+    <div class="content-card">
+        
+        <div class="light-glass-card">
+            
+            <h2 class="card-title">Vitamin Finder</h2>
+            <hr class="divider"/>
+
+            <template if:true={isFilteredByAge}>
+                <div class="header-container">
+                    <h3 class="result-title">Key Nutrients for Your Age:</h3>
+                    <a href="#" onclick={handleResetFinder} class="reset-link">Show All</a>
+                </div>
+                <div class="pill-container">
+                    <template for:each={nutrientButtons} for:item="nutrient">
+                        <button key={nutrient.key} 
+                                data-key={nutrient.key} 
+                                onclick={handleNutrientButtonClick}
+                                class="nutrient-pill">
+                            {nutrient.label}
+                        </button>
+                    </template>
+                </div>
+            </template>
+            
+            <template if:false={isFilteredByAge}>
+                <div class="custom-combobox">
+                    <label class="combobox-label">Select a vitamin or mineral</label>
+                    <button class="combobox-input" onclick={toggleDropdown}>
+                        <span>{selectedLabel}</span>
+                        <svg class="combobox-icon" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
+                    </button>
+                    
+                    <template if:true={isDropdownOpen}>
+                        <div class="combobox-list">
+                            <ul>
+                                <template for:each={vitaminOptions} for:item="option">
+                                    <li key={option.value} data-value={option.value} data-label={option.label} onclick={handleOptionClick} class="combobox-option">
+                                        {option.label}
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <template if:true={selectedVitamin}>
+                <div class="result-container slds-m-top_medium">
+                    <h3 class="result-title">What it does:</h3>
+                    <p class="result-body">{selectedVitamin.description}</p>
+                    <h3 class="result-title slds-m-top_small">Common food sources:</h3>
+                    <p class="result-body">{selectedVitamin.sources}</p>
+                </div>
+            </template>
+        </div>
+        
+    </div>
+</template>

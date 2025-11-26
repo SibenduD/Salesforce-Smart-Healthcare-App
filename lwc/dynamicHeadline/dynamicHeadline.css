@@ -1,0 +1,101 @@
+/*
+ * --- FINAL "CRYSTAL CLEAR REFRACTION" STYLE ---
+ * This version uses a medium opacity white base with strong blur for the ultimate clear glass look.
+ */
+.headline-container {
+    text-align: center;
+    padding: 2rem; 
+    
+    /* 1. Transparent White Base (The final digital glass look) */
+    background: rgba(0, 0, 0, 0.1);  
+    
+    /* 2. Strong blur for clean "refraction" */
+    backdrop-filter: blur(8px); 
+    
+    /* 3. Subtle glass border and clean shadow */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px; 
+    
+    /* Stronger, cleaner box shadow for digital depth */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+                
+}
+
+/*
+ * --- Flex Wrapper ---
+ */
+.greeting-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+/*
+ * --- Style for the Icon/Emoji ---
+ */
+.greeting-icon {
+    font-size: 3rem; 
+    line-height: 1;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    margin-top: -5px; 
+}
+
+/*
+ * ========================================
+ * ANIMATED GREETING
+ * ========================================
+ */
+.main-greeting {
+    font-size: 2.75rem; 
+    font-weight: 700;
+    
+    background: linear-gradient(
+        90deg, 
+        #005a9e, /* Dark Blue */
+        #00796b, /* Dark Teal */
+        #4a148c, /* Dark Purple */
+        #005a9e  
+    );
+    
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    -webkit-animation: gradient-pan 6s linear infinite alternate;
+            animation: gradient-pan 6s linear infinite alternate;
+}
+
+/*
+ * This is the rotating health message.
+ */
+.subtitle-message {
+    font-size: 1.25rem; 
+    font-weight: 300;
+    color: #555; /* Dark grey text (readable on white glass) */
+    margin-top: 0.5rem;
+}
+
+
+/*
+ * ========================================
+ * ANIMATION DEFINITION (Unchanged)
+ * ========================================
+ */
+@-webkit-keyframes gradient-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+@keyframes gradient-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}

@@ -1,0 +1,89 @@
+<template>
+    <!-- Show a spinner *until* the data has loaded -->
+    <template if:true={isLoading}>
+        <div class="spinner-container">
+            <lightning-spinner alternative-text="Loading your dashboard..." size="medium"></lightning-spinner>
+        </div>
+    </template>
+
+    <!-- Show the dashboard *after* data has arrived -->
+    <template if:false={isLoading}>
+        <div class="dashboard-container">
+            
+            <!-- 1. Welcome Message -->
+            <h1 class="welcome-title">
+                Hello, {patientName}
+            </h1>
+            <p class="welcome-subtitle">Here is your health summary for today.</p>
+
+            <!-- 2. Key Alerts -->
+            <template if:true={hasOverdueItems}>
+                <div class="alert-card">
+                    <!-- --- NEW: Added .warning-icon class --- -->
+                    <lightning-icon icon-name="utility:warning" variant="warning" size="small" class="warning-icon"></lightning-icon>
+                    <div class="alert-text">
+                        <span class="alert-title">Urgent Action</span>
+                        <span class="alert-body">You have <b>{overdueCount}</b> overdue health items.</span>
+                    </div>
+                </div>
+            </template>
+
+            <!-- 3. Upcoming Appointments Card -->
+            <div class="content-card card-appointments">
+                <h2 class="card-title">Upcoming Appointments</h2>
+                <hr class="divider"/>
+                
+                <template if:false={hasUpcomingAppointments}>
+                    <p class="empty-state">You have no upcoming appointments.</p>
+                </template>
+                
+                <template for:each={upcomingAppointments} for:item="appt">
+                    <div key={appt.Id} class="list-item">
+                        <div class="item-icon-container">
+                            <lightning-icon icon-name="utility:event" size="small" class="item-icon"></lightning-icon>
+                        </div>
+                        <div class="item-text">
+                            <p class="item-title">{appt.Name}</p>
+                            <p class="item-detail">
+                                <lightning-formatted-date-time value={appt.Visit_Date__c} year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit"></lightning-formatted-date-time>
+                            </p>
+                        </div>
+                    </div>
+                </template>
+
+                <div class="button-container">
+                    <button class="btn-book-new" onclick={navigateToAppointments}>
+                        Book a New Appointment
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4. Health Programs Card -->
+            <div class="content-card card-programs">
+                <h2 class="card-title">My Health Programs</h2>
+                <hr class="divider"/>
+
+                <template if:false={hasActivePrograms}>
+                    <p class="empty-state">You are not enrolled in any active programs.</p>
+                </template>
+
+                <template for:each={activePathways} for:item="pathway">
+                    <div key={pathway.Id} class="slds-m-bottom_medium">
+                        <p class="item-title">{pathway.Wellness_Program_Details__r.Name}</p>
+                        <p class="item-detail slds-m-bottom_x-small">
+                            Status: <lightning-formatted-text value={pathway.Immunization_Status__c}></lightning-formatted-text>
+                            (Dose {pathway.Dose_Number__c} of {pathway.Wellness_Program_Details__r.Total_Required_Doses__c})
+                        </p>
+                        <lightning-progress-bar
+                            value={pathway.Dose_Number__c}
+                            max={pathway.Wellness_Program_Details__r.Total_Required_Doses__c}
+                            size="large"
+                            class="program-progress-bar"
+                        ></lightning-progress-bar>
+                    </div>
+                </template>
+            </div>
+
+        </div>
+    </template>
+</template>

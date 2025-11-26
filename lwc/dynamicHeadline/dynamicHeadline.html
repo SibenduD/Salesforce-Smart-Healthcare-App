@@ -1,0 +1,27 @@
+<template>
+    <div class="headline-container">
+
+        <!-- --- THIS IS THE NEW WRAPPER --- -->
+        <!-- This flex container will hold the icon and text on one line -->
+        <div class="greeting-wrapper">
+
+            <!-- 1. The Icon -->
+            <span class="greeting-icon" title={greetingTitle}>{greetingIcon}</span>
+
+            <!-- 2. The Animated Text -->
+            <h1 class="main-greeting">
+                {greeting}, {userName}
+            </h1>
+
+        </div>
+        <!-- --- END OF NEW WRAPPER --- -->
+
+
+        <!-- 
+          This is the random, encouraging message.
+        -->
+        <p class="subtitle-message">
+            {rotatingMessage}
+        </p>
+    </div>
+</template>

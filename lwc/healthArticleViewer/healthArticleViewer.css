@@ -1,0 +1,176 @@
+/*
+This is the main wrapper for the component.
+*/
+.articles-container {
+    /* --- BACKGROUND URL --- */
+    background-image: url('https://raw.githubusercontent.com/SibenduD/Pulse-Point/main/mainContent3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* We add padding to give the content space from the edges */
+    padding: 2rem; 
+    border-radius: 12px;
+    
+    /* --- FONT --- */
+    font-family: sans-serif; /* Use standard sans-serif font */
+}
+
+/* Main title for the whole section */
+.main-title {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 700;
+    color: #FFFFFF; /* White text for the dark page background */
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    margin-bottom: 2rem; /* 32px spacing */
+    text-align: left;
+}
+
+/* --- UPDATED FOR VISIBILITY --- */
+/* This is the new flex container for an individual article row */
+.article-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3.5rem; /* 56px space between articles */
+    /* Made less transparent (was 0.02) */
+    background: rgba(255, 255, 255, 0.08); 
+    border-radius: 12px;
+    padding: 1.5rem; /* 24px */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Animation: "lift and glow" on hover */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.article-row:last-child {
+    margin-bottom: 0; /* No margin on the last article */
+}
+/* --- UPDATED FOR VISIBILITY --- */
+.article-row:hover {
+    transform: translateY(-8px);
+    /* Made less transparent (was 0.05) */
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* This reverses the layout for every even-numbered article */
+.article-row:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* --- Image Container --- */
+.article-image-container {
+    flex-basis: 40%; /* Image takes 40% */
+    flex-shrink: 0;
+}
+.article-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Scales/crops image nicely */
+    border-radius: 8px;
+}
+
+/* --- Content Container --- */
+.article-content {
+    flex-basis: 60%; /* Text takes 60% */
+    flex-shrink: 1;
+    padding-left: 2rem; /* 32px gutter */
+}
+/* Adjust padding for reversed rows */
+.article-row:nth-child(even) .article-content {
+    padding-left: 0;
+    padding-right: 2rem;
+}
+
+/* This is the "Wellness" tag, restyled for dark BG */
+.topic-tag {
+    display: inline-block;
+    font-size: 0.75rem; /* 12px */
+    font-weight: 700;
+    padding: 0.3rem 0.85rem;
+    border-radius: 50px; /* Pill shape */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+    
+    /* --- "GHOST" BUTTON STYLE --- */
+    background-color: transparent;
+    border: 1px solid #F4B6C2; /* Soft pink from cloud */
+    color: #F4B6C2;
+}
+
+/* This is the card title */
+.article-title {
+    color: #FFFFFF; /* Bright white text */
+    font-weight: 600;
+    font-size: 1.5rem; /* 24px */
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+/* Make the title a clickable link */
+.article-link {
+    text-decoration: none;
+    color: inherit; /* Inherits the white color */
+    transition: color 0.2s ease-in-out;
+}
+.article-link:hover {
+    text-decoration: none;
+    /* --- HOVER COLOR --- */
+    color: #F4B6C2; /* Soft pink on hover */
+}
+
+/* This is the full summary paragraph */
+.article-summary {
+    color: #FFFFFF; /* Changed to pure white for better contrast */
+    font-size: 0.95rem; /* 15px */
+    line-height: 1.6;
+    font-weight: 400; /* Lighter font weight for body */
+    /* Added shadow to lift text off the background */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); 
+}
+
+/* This is the footer with "By Author • 2 days ago" */
+.article-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.15); /* Light divider line */
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+.author-timestamp {
+    font-size: 0.8rem; /* 12px */
+    color: #A0A0A0; /* Subtle gray */
+}
+
+/* --- Responsive Design (No changes here) --- */
+@media (max-width: 768px) {
+    /* Stack everything on mobile */
+    .article-row,
+    .article-row:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .article-content {
+        padding: 1.5rem 0 0 0; /* Reset padding */
+    }
+    
+    /* Adjust padding for reversed (now stacked) rows */
+    .article-row:nth-child(even) .article-content {
+        padding: 1.5rem 0 0 0;
+    }
+    
+    .article-image-container {
+        flex-basis: auto; /* Let it be full width */
+    }
+    
+    .main-title {
+        font-size: 1.75rem; /* Smaller title on mobile */
+    }
+    
+    .article-title {
+        font-size: 1.25rem;
+    }
+    
+    .articles-container {
+        padding: 1.5rem; /* Less padding on mobile */
+    }
+}

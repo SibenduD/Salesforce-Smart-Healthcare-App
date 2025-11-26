@@ -1,0 +1,81 @@
+<template>
+    <div class="list-container">
+        
+        <h2 class="main-title">Your Appointment History</h2>
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading appointments..." size="medium" variant="brand"></lightning-spinner>
+        </template>
+
+        <template if:true={appointments}>
+            <div class="card-list">
+                <template for:each={appointments} for:item="appt">
+                    
+                    <div key={appt.Id} class="appointment-card">
+                        
+                        <div class="card-header" data-id={appt.Id} onclick={handleCardClick}>
+                            <h3 class="appointment-name">
+                                Appointment: {appt.Name}
+                            </h3>
+                            <lightning-icon 
+                                icon-name="utility:chevrondown" 
+                                size="x-small" 
+                                class={appt.chevronClass}>
+                            </lightning-icon>
+                        </div>
+
+                        <div class={appt.contentClass}>
+                            <div class="content-wrapper">
+                                <div class="card-body">
+                                    <div class="detail-row">
+                                        <span class="visit-date">
+                                            <lightning-formatted-date-time
+                                                value={appt.Visit_Date__c}
+                                                year="numeric"
+                                                month="long"
+                                                day="2-digit"
+                                            ></lightning-formatted-date-time>
+                                        </span>
+                                        <span class={appt.statusClass}>{appt.Approval_Status__c}</span>
+                                    </div>
+                                    <p class="doctor-name" if:true={appt.doctorName}>
+                                        With: {appt.doctorName}
+                                    </p>
+                                    <p class="outcome-text" if:true={appt.Screening_Outcome__c}>
+                                        {appt.Screening_Outcome__c}
+                                    </p>
+                                </div>
+
+                                <div class="card-footer">
+                                    <span class="follow-up" if:true={appt.Next_Follow_up_Date__c}>
+                                        <lightning-icon icon-name="utility:redo" size="x-small"></lightning-icon>
+                                        Follow-up: 
+                                        <lightning-formatted-date-time
+                                            value={appt.Next_Follow_up_Date__c}
+                                            month="short"
+                                            day="2-digit"
+                                        ></lightning-formatted-date-time>
+                                    </span>
+                                    <span class="high-risk" if:true={appt.High_Risk__c}>
+                                        <lightning-icon icon-name="utility:warning" size="x-small" variant="error"></lightning-icon>
+                                        High Risk
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </template>
+            </div>
+        </template>
+
+        <template if:true={isEmpty}>
+            <div class="empty-state">
+                <lightning-icon icon-name="utility:info" size="large"></lightning-icon>
+                <h3 class="empty-title">No Appointments Found</h3>
+                <p class="empty-text">You do not have any past or upcoming appointments.</p>
+            </div>
+        </template>
+
+    </div>
+</template>

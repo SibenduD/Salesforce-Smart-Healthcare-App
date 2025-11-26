@@ -1,0 +1,47 @@
+<template>
+    <div class="content-card">
+        
+        <div class="light-glass-card">
+            
+            <h2 class="card-title">Key Nutrients by Age</h2>
+            <hr class="divider"/>
+
+            <div class="custom-slider-container">
+                <label class="slider-label" for="ageSlider">Select your age</label>
+                
+                <div class="slider-track">
+                    <div class="slider-track-fill" style={trackFillStyle}></div>
+                </div>
+                
+                <input
+                    type="range"
+                    id="ageSlider"
+                    class="custom-slider"
+                    min="1"
+                    max="80"
+                    step="1"
+                    value={age}
+                    oninput={handleSliderChange}
+                />
+            </div>
+            
+            <p class="current-age">Selected Age: <strong>{age}</strong></p>
+
+            <template if:true={result}>
+                <div class="result-container slds-m-top_medium">
+                    <h3 class="result-title">{result.title}</h3>
+                    <p class="result-body">{result.summary}</p>
+                    <ul class="nutrient-list slds-m-top_small">
+                        <template for:each={result.nutrients} for:item="nutrient">
+                            <li key={nutrient.key}>{nutrient.name}</li>
+                        </template>
+                    </ul>
+                    <p class="disclaimer slds-m-top_medium">
+                        *This information is for educational purposes and is not medical advice.
+                    </p>
+                </div>
+            </template>
+        </div>
+        
+    </div>
+</template>

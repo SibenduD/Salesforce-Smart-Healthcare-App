@@ -1,0 +1,55 @@
+<template>
+    <!-- 
+      This is the "frosted glass" bar.
+    -->
+    <div class="content-card">
+        <!-- 
+          This is the scrolling "ticker tape" container.
+        -->
+        <div class="scrolling-wrapper">
+            <!-- The list of benefits, now with colorful icons -->
+            <ul class="benefit-list">
+                <li>
+                    <!-- "brand" variant gives a blue icon -->
+                    <lightning-icon icon-name="utility:calendar" size="x-small" variant="brand"></lightning-icon>
+                    <span>Track your upcoming appointments and visit history.</span>
+                </li>
+                <li>
+                    <!-- "success" variant gives a green icon -->
+                    <lightning-icon icon-name="utility:shield" size="x-small" variant="success"></lightning-icon>
+                    <span>View your immunization status and health program progress.</span>
+                </li>
+                <li>
+                    <!-- "warning" variant gives a yellow icon -->
+                    <lightning-icon icon-name="utility:knowledge_base" size="x-small" variant="warning"></lightning-icon>
+                    <span>Access a library of helpful health articles.</span>
+                </li>
+                <li>
+                    <!-- "error" variant gives a red icon (which adds color) -->
+                    <lightning-icon icon-name="utility:groups" size="x-small" variant="error"></lightning-icon>
+                    <span>Find and learn about your doctors and specialists.</span>
+                </li>
+                
+                <!-- 
+                  Duplicated list for seamless scroll
+                -->
+                <li>
+                    <lightning-icon icon-name="utility:calendar" size="x-small" variant="brand"></lightning-icon>
+                    <span>Track your upcoming appointments and visit history.</span>
+                </li>
+                <li>
+                    <lightning-icon icon-name="utility:shield" size="x-small" variant="success"></lightning-icon>
+                    <span>View your immunization status and health program progress.</span>
+                </li>
+                <li>
+                    <lightning-icon icon-name="utility:knowledge_base" size="x-small" variant="warning"></lightning-icon>
+                    <span>Access a library of helpful health articles.</span>
+                </li>
+                <li>
+                    <lightning-icon icon-name="utility:groups" size="x-small" variant="error"></lightning-icon>
+                    <span>Find and learn about your doctors and specialists.</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>

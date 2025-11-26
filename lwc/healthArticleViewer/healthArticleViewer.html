@@ -1,0 +1,45 @@
+<template>
+    <div class="articles-container">
+        <h1 class="main-title">Pulse Point Health Library</h1>
+        
+        <div class="articles-list-container">
+            <template if:true={articles}>
+                <template for:each={articles} for:item="article">
+                    
+                    <div key={article.Id} class="article-row" onclick={handleReadMore} data-id={article.Id}>
+                        
+                        <div class="article-image-container">
+                            <img src={article.Image_URL__c} alt={article.Name} class="article-image" />
+                        </div>
+                        
+                        <div class="article-content">
+                            <span class="topic-tag">{article.Topic__c}</span>
+                            
+                            <h2 class="article-title">
+                                <a href="#" class="article-link">{article.Name}</a>
+                            </h2>
+                            
+                            <p class="article-summary">
+                                {article.Summary__c}
+                            </p>
+                            
+                            <div class="article-footer">
+                                <span class="author-timestamp">
+                                    By {article.Author__c} • 
+                                    <lightning-formatted-date-time
+                                        value={article.Published_Date__c}
+                                        relative-date-style="true">
+                                    </lightning-formatted-date-time>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </div>
+
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading articles..." size="medium"></lightning-spinner>
+    </template>
+</template>

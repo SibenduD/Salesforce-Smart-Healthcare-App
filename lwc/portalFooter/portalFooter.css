@@ -1,0 +1,116 @@
+/* --- ANIMATION KEYFRAMES --- */
+/* This is the 'bg-pan-right' from animista.net */
+@-webkit-keyframes bg-pan-right {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes bg-pan-right {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* --- Main Footer Container (SMOOTH ANIMATION) --- */
+.footer-container {
+    /* 1. "Dark Shiny" Gradient */
+    background: linear-gradient(
+        to right, 
+        rgba(30, 0, 70, 0.7),  /* Dark Purple */
+        rgba(74, 0, 224, 0.7), /* Dark Blue/Purple */
+        rgba(30, 0, 70, 0.7)   /* Dark Purple again */
+    );
+    
+    /* 2. Set gradient size for panning */
+    background-size: 300% 100%;
+    
+    /* 3. Apply the animation (UPDATED to ease) */
+    -webkit-animation: bg-pan-right 10s ease infinite;
+    animation: bg-pan-right 10s ease infinite;
+    
+    /* 4. Frosted Glass Effect */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    /* 5. Glass Edge */
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2); 
+    
+    /* 6. Default text color */
+    color: #E0E0E0; /* Light grey */
+}
+
+/* --- Section Titles --- */
+.footer-title {
+    color: #FFFFFF; /* Bright White */
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+/* --- "About Us" Text --- */
+.footer-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #E0E0E0; /* Light grey */
+}
+
+/* --- "Quick Links" List --- */
+.footer-links-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+.footer-links-list li {
+    margin-bottom: 0.5rem;
+}
+.footer-links-list a {
+    color: #E0E0E0; /* Light grey */
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+.footer-links-list a:hover {
+    color: #FFFFFF; /* Bright White */
+    text-decoration: underline;
+}
+
+/* --- Social Media Icons --- */
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+.social-icon {
+    display: block;
+    width: 40px;
+    height: 40px;
+}
+.social-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: #E0E0E0; /* Light grey */
+    transition: all 0.2s ease;
+}
+.social-icon:hover svg {
+    fill: #FFFFFF; /* Bright White */
+    transform: scale(1.1);
+}
+
+/* --- Bottom Copyright Bar --- */
+.copyright-bar {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.8rem;
+    color: #E0E0E0; /* Light grey */
+    
+    /* Darker, more opaque background for separation */
+    background: rgba(0, 0, 0, 0.3); /* Darker 30% opacity */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}

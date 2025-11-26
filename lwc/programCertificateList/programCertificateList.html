@@ -1,0 +1,46 @@
+<template>
+    <div class="list-container">
+        
+        <!-- Main Title -->
+        <h2 class="main-title">Your Certificates</h2>
+
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading..." size="medium" variant="brand"></lightning-spinner>
+        </template>
+        
+        <!-- List of Completed Programs -->
+        <template if:true={completedPrograms}>
+            <div class="card-list">
+                <template for:each={completedPrograms} for:item="program">
+                    <div key={program.Id} class="program-card">
+                        <div class="card-content">
+                            <lightning-icon icon-name="utility:ribbon" size="medium" class="card-icon"></lightning-icon>
+                            <div class="card-text">
+                                <h3 class="program-name">
+                                    {program.programName}
+                                </h3>
+                                <p class="complete-date">Completed on {program.completionDate}</p>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <a href={program.pdfUrl} class="download-button" target="_blank">
+                                <lightning-icon icon-name="utility:download" size="x-small"></lightning-icon>
+                                Download
+                            </a>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- Empty State -->
+        <template if:true={isEmpty}>
+            <div class="empty-state">
+                <lightning-icon icon-name="utility:info" size="large"></lightning-icon>
+                <h3 class="empty-title">No Certificates Available</h3>
+                <p class="empty-text">You have not completed any health programs yet.</p>
+            </div>
+        </template>
+    </div>
+</template>

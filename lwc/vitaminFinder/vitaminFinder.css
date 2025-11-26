@@ -1,0 +1,232 @@
+/* --- ANIMATION KEYFRAMES --- */
+/* Shine effect for the card hover */
+@-webkit-keyframes shine-effect {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+@keyframes shine-effect {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+
+/* --- Main Card Style (Wallpaper) --- */
+.content-card {
+    background-image: url('https://raw.githubusercontent.com/SibenduD/Pulse-Point/main/patientDashboard.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 20px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* --- Light Glassmorphism Card (UPDATED) --- */
+.light-glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    min-height: 250px;
+    font-family: system-ui, -apple-system, sans-serif;
+    color: #333;
+    
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- Shine Pseudo-Element --- */
+.light-glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start off-screen */
+    width: 75%;
+    height: 100%;
+    
+    background: linear-gradient(
+        to right, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%
+    );
+    
+    transform: skewX(-25deg); /* Angle the shine */
+    animation: none;
+    
+    /* --- FIX --- */
+    /* The shine is at the lowest layer */
+    z-index: 1; 
+}
+
+/* --- Trigger shine on hover --- */
+.light-glass-card:hover::before {
+    animation: shine-effect 0.85s ease;
+}
+
+
+/* --- Text Styles for Light Card --- */
+/* Set all content to z-index: 2 (above the shine) */
+.card-title, .divider, .pill-container, 
+.header-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- FIX: Set specific z-index for dropdown and results --- */
+.custom-combobox {
+    position: relative;
+    z-index: 3; /* Dropdown is highest */
+}
+.result-container {
+    position: relative;
+    z-index: 2; /* Results are lower than dropdown */
+    
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 1rem;
+}
+
+
+.card-title {
+    color: #0A1931;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.divider {
+    border: none;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.result-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+.result-body {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* --- "CLEAN" PILL STYLING --- */
+.pill-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.nutrient-pill {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #0A1931;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.nutrient-pill:hover {
+    background: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* --- Header & Reset Link Styling --- */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+.header-container .result-title {
+    margin-bottom: 0;
+}
+.reset-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #0072ff;
+    text-decoration: none;
+    cursor: pointer;
+}
+.reset-link:hover {
+    text-decoration: underline;
+}
+
+/* --- NEW CUSTOM DROPDOWN CSS --- */
+.combobox-label {
+    color: #555;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    padding-left: 0.5rem;
+    display: block;
+}
+.combobox-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD; 
+    border-radius: 12px;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0A1931;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.combobox-input:focus {
+    outline: none;
+    border-color: #89CFF0;
+    box-shadow: 0 0 5px rgba(137, 207, 240, 0.5);
+}
+.combobox-icon {
+    width: 16px;
+    height: 16px;
+    fill: #333;
+    transition: transform 0.2s ease;
+}
+.combobox-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10; /* This ensures the list is on top */
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 0.25rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.combobox-list ul {
+    list-style: none;
+    padding: 0.25rem;
+    margin: 0;
+}
+.combobox-option {
+    padding: 0.75rem 1rem;
+    color: #333;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.combobox-option:hover {
+    background: #f0f0f0;
+}

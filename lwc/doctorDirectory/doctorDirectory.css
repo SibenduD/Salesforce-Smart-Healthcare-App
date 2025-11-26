@@ -1,0 +1,295 @@
+/* --- Main Component Container --- */
+.directory-container {
+    background-image: url('https://raw.githubusercontent.com/SibenduD/Pulse-Point/main/mainContent3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    padding: 2rem; 
+    border-radius: 12px;
+    
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 
+                 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 
+                 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+    overflow: hidden;
+}
+
+/* --- Main Title --- */
+.main-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* --- Slider Structure --- */
+.slider-container {
+    position: relative;
+    /* Increased height for taller card */
+    min-height: 600px; 
+    margin: 0 auto;
+}
+
+.slider-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- SLIDE STACK STYLES --- */
+.slide {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 60%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+    transform: translateX(0) scale(0.7);
+}
+.slide.is-active {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    z-index: 10;
+}
+.slide.is-prev {
+    transform: translateX(-30%) scale(0.8);
+    opacity: 0.4;
+    z-index: 5;
+}
+.slide.is-next {
+    transform: translateX(30%) scale(0.8);
+    opacity: 0.4;
+    z-index: 5;
+}
+
+
+/* --- DOCTOR CARD (UPDATED) --- */
+.doctor-card {
+    background: rgba(10, 20, 45, 0.5); 
+    backdrop-filter: blur(15px) brightness(0.9);
+    -webkit-backdrop-filter: blur(15px) brightness(0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-sizing: border-box; 
+    
+    position: relative;
+    overflow: hidden; 
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    transition: all 0.4s ease-in-out;
+    
+    /* Increased height for larger photo */
+    min-height: 520px;
+}
+
+/* --- On hover, align pic/name to the top --- */
+.doctor-card:hover {
+    justify-content: flex-start;
+    padding-top: 2.5rem; /* Added a bit more top padding */
+}
+
+/* --- DOCTOR PHOTO (UPDATED) --- */
+.doctor-photo {
+    width: 150px; /* Was 130px */
+    height: 150px; /* Was 130px */
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    border: 4px solid #F4B6C2; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+    transition: all 0.4s ease-in-out;
+}
+
+/* --- DOCTOR NAME --- */
+.doctor-name {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    flex-shrink: 0;
+    transition: all 0.4s ease-in-out;
+}
+
+/* --- HOVER PANEL --- */
+.doctor-hover-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    background: rgba(10, 20, 45, 0.6); 
+    backdrop-filter: blur(10px) brightness(0.9);
+    -webkit-backdrop-filter: blur(10px) brightness(0.9);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    
+    padding: 1.5rem;
+    text-align: center;
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px); 
+    
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --- On card hover, show the panel --- */
+.doctor-card:hover .doctor-hover-details {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); 
+}
+
+
+/* --- Specialty Tag (INSIDE HOVER PANEL) --- */
+.specialty-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.85rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+    
+    background-color: transparent;
+    border: 1px solid #F4B6C2;
+    color: #F4B6C2;
+}
+
+/* --- Biography (INSIDE HOVER PANEL) --- */
+.doctor-bio {
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    font-weight: 400;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- Contact Info (INSIDE HOVER PANEL) --- */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+.contact-item {
+    display: flex;
+    align-items: center;
+    color: #D3D3D3;
+    font-size: 0.9rem;
+}
+.contact-item lightning-icon {
+    --sds-c-icon-color-foreground-default: #F4B6C2; 
+    margin-right: 0.5rem;
+}
+
+/* --- Slider Controls (Unchanged) --- */
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --sds-c-icon-color-foreground-default: #FFFFFF;
+    transition: background 0.2s ease;
+}
+.slider-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.slider-button.prev {
+    left: -10px;
+}
+.slider-button.next {
+    right: -10px;
+}
+
+/* --- Pagination Dots (Unchanged) --- */
+.slider-pagination {
+    text-align: center;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 15;
+}
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.dot:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+.dot.active {
+    background: #F4B6C2; 
+    transform: scale(1.2);
+}
+
+/* --- Responsive Design (Unchanged) --- */
+@media (max-width: 768px) {
+    .directory-container {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    .slide {
+        width: 90%;
+    }
+
+    .slide.is-prev {
+        transform: translateX(-15%) scale(0.8);
+    }
+    .slide.is-next {
+        transform: translateX(15%) scale(0.8);
+    }
+    
+    .slider-container {
+        /* Increased for taller card */
+        min-height: 560px;
+    }
+
+    .slider-button {
+        width: 35px;
+        height: 35px;
+    }
+    .slider-button.prev {
+        left: 0px;
+    }
+    .slider-button.next {
+        right: 0px;
+    }
+    
+    .doctor-card {
+        min-height: 520px;
+    }
+}

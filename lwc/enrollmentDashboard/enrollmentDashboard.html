@@ -1,0 +1,37 @@
+<template>
+    <div class="dashboard-container">
+        
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading programs..." size="medium" variant="brand"></lightning-spinner>
+        </template>
+        
+        <template if:true={enrollments}>
+            <template if:true={isEmpty}>
+                <div class="empty-state">
+                    <h2 class="empty-title">No Active Programs</h2>
+                    <p class="empty-text">You are not currently enrolled in any active health programs.</p>
+                </div>
+            </template>
+            
+            <div class="stat-cards-grid">
+                
+                <template for:each={enrollments} for:item="program">
+                    <div key={program.programName} class="stat-card">
+                        
+                        <div class="progress-circle-container">
+                            <div class="progress-circle" style={program.progressStyle}>
+                                <div class="progress-percentage">{program.percentage}%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-content">
+                            <h2 class="progress-program-name">{program.programName}</h2>
+                            <p class="progress-text">{program.progressText}</p>
+                        </div>
+                    </div>
+                </template>
+
+            </div>
+        </template>
+    </div>
+</template>

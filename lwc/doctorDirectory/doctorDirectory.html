@@ -1,0 +1,63 @@
+<template>
+    <div class="directory-container" if:true={hasDoctors}>
+        <h1 class="main-title">Meet Our Doctors</h1>
+
+        <div class="slider-container">
+            <div class="slider-track">
+                <template for:each={doctorSlides} for:item="doctor">
+                    <div key={doctor.Id} class={doctor.slideClass}>
+                        
+                        <div class="doctor-card">
+                            
+                            <img src={doctor.Photo_URL__c} alt={doctor.Name} class="doctor-photo" />
+                            <h2 class="doctor-name">{doctor.Name}</h2>
+
+                            <div class="doctor-hover-details">
+                                <span class="specialty-tag">{doctor.Specialty__c}</span>
+                                <p class="doctor-bio">{doctor.Biography__c}</p>
+
+                                <div class="contact-info slds-m-top_medium">
+                                    <p class="contact-item" if:true={doctor.Email}>
+                                        <lightning-icon icon-name="utility:email" size="x-small"></lightning-icon>
+                                        <span>{doctor.Email}</span>
+                                    </p>
+                                    <p class="contact-item" if:true={doctor.Phone}>
+                                        <lightning-icon icon-name="utility:phone" size="x-small"></lightning-icon>
+                                        <span>{doctor.Phone}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </template>
+            </div>
+
+            <template if:true={showPrevButton}>
+                <button class="slider-button prev" onclick={handlePrev}>
+                    <lightning-icon icon-name="utility:chevronleft" size="small"></lightning-icon>
+                </button>
+            </template>
+            <template if:true={showNextButton}>
+                <button class="slider-button next" onclick={handleNext}>
+                    <lightning-icon icon-name="utility:chevronright" size="small"></lightning-icon>
+                </button>
+            </template>
+        </div>
+        
+        <div class="slider-pagination" if:true={paginationDots}>
+            <template for:each={paginationDots} for:item="dot">
+                <span key={dot.index} 
+                      class={dot.class} 
+                      data-index={dot.index} 
+                      onclick={handleDotClick}>
+                </span>
+            </template>
+        </div>
+
+    </div>
+
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading doctors..." size="medium"></lightning-spinner>
+    </template>
+</template>

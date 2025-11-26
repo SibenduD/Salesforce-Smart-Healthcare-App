@@ -1,0 +1,127 @@
+/* --- Main Dashboard Container --- */
+.dashboard-container {
+    background-image: url('https://raw.githubusercontent.com/SibenduD/Pulse-Point/main/page_dashboardContent.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    padding: 2rem;
+    border-radius: 12px;
+    font-family: system-ui, -apple-system, sans-serif;
+    min-height: 250px;
+    
+    position: relative; 
+}
+
+/* --- Grid for the cards --- */
+.stat-cards-grid {
+    display: grid;
+    /* This creates 3 responsive columns */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+/* --- "FLOATING" STAT CARD (NO CARD) --- */
+.stat-card {
+    /* REMOVED: background, backdrop-filter, border, box-shadow */
+    
+    padding: 1.5rem;
+    
+    /* Center the content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Add a subtle transition for the glow on hover */
+    transition: all 0.3s ease;
+}
+
+/* --- Progress Circle (NEW GLOW) --- */
+.progress-circle-container {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 1rem;
+}
+.progress-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    
+    /* This is the gradient set by the JS */
+    
+    /* This creates the "donut" hole */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* --- NEW --- */
+    /* This adds a "glow" to the colored part of the circle */
+    filter: drop-shadow(0 0 10px #FFD700);
+    transition: filter 0.3s ease;
+}
+.stat-card:hover .progress-circle {
+    filter: drop-shadow(0 0 20px #FFD700);
+}
+
+/* This is the "hole" in the middle */
+.progress-circle::before {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    /* Dark, transparent background for the "hole" */
+    background: rgba(10, 25, 45, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+.progress-percentage {
+    position: relative;
+    z-index: 2;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    /* Add shadow to text */
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* --- Progress Text --- */
+.progress-content {
+    text-align: center;
+}
+.progress-program-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin: 0;
+}
+.progress-text {
+    font-size: 0.9rem;
+    color: #E0E0E0; /* Light grey */
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin-top: 0.25rem;
+}
+
+/* --- Empty State --- */
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(10, 25, 45, 0.6);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #E0E0E0;
+}
+.empty-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+.empty-text {
+    font-size: 1rem;
+    color: #A0A0A0;
+}
+
+/* Style the spinner */
+.dashboard-container lightning-spinner {
+    --sds-c-spinner-color-brand: #FFFFFF;
+}

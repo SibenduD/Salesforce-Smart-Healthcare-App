@@ -1,0 +1,75 @@
+<template>
+    <div class="list-container">
+        
+        <h2 class="main-title">Your Program Enrollments</h2>
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading programs..." size="medium" variant="brand"></lightning-spinner>
+        </template>
+
+        <template if:true={enrollments}>
+            <div class="card-list">
+                <template for:each={enrollments} for:item="enroll">
+                    
+                    <div key={enroll.Id} class="enrollment-card">
+                        
+                        <div class="card-header" data-id={enroll.Id} onclick={handleCardClick}>
+                            <div class="header-details">
+                                <h3 class="program-name">
+                                    {enroll.programName}
+                                </h3>
+                                <span class={enroll.statusClass}>{enroll.Immunization_Status__c}</span>
+                            </div>
+                            <div class="header-percentage">
+                                <span class="percentage-text">{enroll.percentage}%</span>
+                                <lightning-icon 
+                                    icon-name="utility:chevrondown" 
+                                    size="x-small" 
+                                    class={enroll.chevronClass}>
+                                </lightning-icon>
+                            </div>
+                        </div>
+
+                        <div class={enroll.contentClass}>
+                            <div class="content-wrapper">
+                                <div class="card-body">
+                                    <p class="detail-text">
+                                        Progress: <strong>Dose {enroll.Dose_Number__c} of {enroll.totalDoses}</strong>
+                                    </p>
+                                    <p class="detail-text" if:true={enroll.DueDate}>
+                                        Due Date: 
+                                        <lightning-formatted-date-time
+                                            value={enroll.Due_Date__c}
+                                            year="numeric"
+                                            month="long"
+                                            day="2-digit"
+                                        ></lightning-formatted-date-time>
+                                    </p>
+                                    <p class="detail-text" if:true={enroll.Date_Administered__c}>
+                                        Last Administered: 
+                                        <lightning-formatted-date-time
+                                            value={enroll.Date_Administered__c}
+                                            year="numeric"
+                                            month="long"
+                                            day="2-digit"
+                                        ></lightning-formatted-date-time>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </template>
+            </div>
+        </template>
+
+        <template if:true={isEmpty}>
+            <div class="empty-state">
+                <lightning-icon icon-name="utility:info" size="large"></lightning-icon>
+                <h3 class="empty-title">No Programs Found</h3>
+                <p class="empty-text">You are not currently enrolled in any health programs.</p>
+            </div>
+        </template>
+
+    </div>
+</template>

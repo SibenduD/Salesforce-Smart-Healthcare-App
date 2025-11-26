@@ -1,0 +1,66 @@
+<template>
+    <div class="content-card">
+        
+        <div class="light-glass-card">
+            <template if:true={user}>
+                <div class="profile-grid">
+                    
+                    <div class="pic-column">
+                        <img class="profile-pic" src={user.FullPhotoUrl} alt="User Profile Picture" />
+                    </div>
+
+                    <div class="details-column">
+                        <h2 class="user-name">{user.Name}</h2>
+                        <p class="user-title" if:true={user.Title}>{user.Title}</p>
+                        
+                        <hr class="divider"/>
+
+                        <div class="contact-grid">
+                            <div>
+                                <h3 class="detail-title">Contact Info</h3>
+                                <p class="detail-item" if:true={user.Email}>
+                                    <lightning-icon icon-name="utility:email" size="x-small"></lightning-icon>
+                                    <span>{user.Email}</span>
+                                </p>
+                                <p class="detail-item" if:true={user.Phone}>
+                                    <lightning-icon icon-name="utility:phone" size="x-small"></lightning-icon>
+                                    <span>{user.Phone}</span>
+                                </p>
+                                <p class="detail-item" if:true={user.MobilePhone}>
+                                    <lightning-icon icon-name="utility:mobile" size="x-small"></lightning-icon>
+                                    <span>{user.MobilePhone}</span>
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="detail-title">Company Info</h3>
+                                <p class="detail-item" if:true={user.CompanyName}>
+                                    <lightning-icon icon-name="utility:company" size="x-small"></lightning-icon>
+                                    <span>{user.CompanyName}</span>
+                                </p>
+                                <p class="detail-item" if:true={managerName}>
+                                    <lightning-icon icon-name="utility:user" size="x-small"></lightning-icon>
+                                    <span>Manager: {managerName}</span>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="bottom-section">
+                    <div if:true={user.AboutMe}>
+                        <h3 class="detail-title">About Me</h3>
+                        <p class="detail-item">{user.AboutMe}</p>
+                    </div>
+
+                    <div if:true={address}>
+                        <h3 class="detail-title">Address</h3>
+                        <p class="detail-item">{address}</p>
+                    </div>
+                </div>
+
+            </template>
+        </div>
+    </div>
+</template>

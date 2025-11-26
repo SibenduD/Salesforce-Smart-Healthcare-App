@@ -1,0 +1,172 @@
+/*
+ * ==========================================================
+ * PATIENT DASHBOARD - "GLASS ON IMAGE" AESTHETIC DESIGN
+ * ==========================================================
+ */
+
+/* --- Main Container --- */
+.dashboard-container {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Arial", sans-serif;
+    background-image: url('https://raw.githubusercontent.com/SibenduD/Pulse-Point/main/patientDashboard.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Welcome Text --- */
+.welcome-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #333;
+}
+.welcome-subtitle {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #555;
+    margin-bottom: 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* --- Frosted Glass Cards --- */
+.content-card, .alert-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.6);
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Card Title --- */
+.card-title {
+    color: #333333;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+.divider {
+    border: none;
+    height: 1px;
+    background-color: #f0f0f0;
+    margin-bottom: 1rem;
+}
+
+/* --- Alert Card --- */
+.alert-card {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 243, 205, 0.8);
+    border-color: rgba(255, 229, 153, 0.5);
+}
+.alert-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+}
+.alert-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #665120;
+}
+.alert-body {
+    font-size: 0.9rem;
+    color: #665120;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* --- Warning Icon with Heartbeat Animation --- */
+.warning-icon {
+    --sds-c-icon-color-foreground: #FFA500;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.3); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.3); }
+    70% { transform: scale(1); }
+}
+
+/* --- List Items --- */
+.list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(224, 224, 224, 0.6);
+}
+.list-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.item{font-weight: 600; color: #333; }
+.item-detail {
+    font-size: 0.9rem;
+    color: #555;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* --- Empty State --- */
+.empty-state {
+    color: #777;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+/* --- Spinner --- */
+.spinner-container {
+    width: 100%;
+    padding: 3rem 0;
+}
+
+/* --- Dynamic Colors --- */
+.card-appointments .item-icon-container {
+    background: #e0f2f1;
+       width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+.card-appointments .item-icon {
+    --sds-c-icon-color-foreground: #00796b;
+}
+.card-programs .program-progress-bar {
+    --sds-c-progress-bar-color-background-fill: #4a148c;
+    --sds-c-progress-bar-color-border: #4a148c;
+}
+
+/* --- Gradient Button --- */
+.button-container {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+.btn-book-new {
+    background: linear-gradient(90deg, #005a9e, #00796b, #4a148c);
+    background-size: 300% auto;
+    border: none;
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    animation: gradient-pan 6s linear infinite alternate;
+    transition: all 0.3s ease;
+}
+.btn-book-new:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+@keyframes gradient-pan {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
