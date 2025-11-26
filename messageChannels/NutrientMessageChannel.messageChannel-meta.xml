@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    <masterLabel>NutrientMessageChannel</masterLabel>
+    
+    <isExposed>true</isExposed>
+    
+    <lightningMessageFields>
+        <fieldName>nutrientNames</fieldName>
+        <description>An array of nutrient names (e.g., ['Calcium', 'Iron'])</description>
+    </lightningMessageFields>
+
+</LightningMessageChannel>
