@@ -54,6 +54,20 @@ Moved beyond standard Salesforce layouts by building custom **Lightning Web Comp
 
 ---
 
+## 🌟 Live Demo
+
+You can log in to the live portal to experience the Glassmorphism UI and LWC interactivity.
+
+| **Access** | **Details** |
+| :--- | :--- |
+| **Portal URL** | [**Click Here to Open Pulse Point**](https://orgfarm-e28918ef10-dev-ed.develop.my.site.com/patienthealth) |
+| **Username** | `s@d.com`  |
+| **Password** | `qwertyu1` |
+
+> **Note:** This is a restricted "Patient Customer" user. You can view appointments and health data but cannot modify system configurations.
+
+---
+
 ## ⚙️ Technical Architecture
 
 ### Data Model
