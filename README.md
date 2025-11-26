@@ -61,7 +61,7 @@ The system is built on a robust custom data model including:
 * **`Wellness_Program__c`**: Defines health initiatives (e.g., Diabetes Care).
 * **`Patient_Pathway__c`**: Tracks a patient's enrollment and progress in a program.
 * **`Visit__c`**: Records patient-doctor interactions.
-* **`Immunization_Record__c`**: Logs vaccine administration details.
+* **`Vaccination_Record__c`**: Logs vaccine administration details.
 * **`Clinical_Note__c`**: Stores secure doctor notes.
 
 ### Lightning Web Components (LWC)
