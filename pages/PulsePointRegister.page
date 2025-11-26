@@ -1,0 +1,174 @@
+<apex:page controller="PulsePointRegisterController" showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0">
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style type="text/css">
+            /* --- Page Background --- */
+            body {
+                background-image: url('{!$Resource.login_bg}'); 
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+            }
+
+            /* --- The "Frosted Glass" Container --- */
+            .form-container {
+                background: rgba(255, 255, 255, 0.65);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 20px;
+                padding: 2.5rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 500px;
+                margin: 5vh auto;
+                box-sizing: border-box;
+            }
+            
+            .title {
+                color: #4C5760;
+                font-weight: 600;
+                font-size: 2.2rem;
+                text-align: center;
+                margin-bottom: 2rem;
+                margin-top: 0;
+            }
+
+            /* --- Form Field Styling --- */
+            .form-group {
+                margin-bottom: 1rem;
+            }
+            .form-group label {
+                color: #6C7A89;
+                font-size: 0.9rem;
+                display: block;
+                margin-bottom: 0.25rem;
+            }
+            .form-group .input-text {
+                width: 100%;
+                padding: 0.75rem;
+                border: none;
+                background: rgba(255, 255, 255, 0.7);
+                border-radius: 10px;
+                box-sizing: border-box; 
+                font-size: 1rem;
+                color: #333; /* Dark text */
+            }
+            .form-group .input-text:focus {
+                outline: none;
+                box-shadow: 0 0 0 2px #B0E0E6;
+            }
+            /* Grid for First/Last Name */
+            .name-grid {
+                display: flex;
+                gap: 1rem;
+            }
+            .name-grid .form-group {
+                width: 50%;
+            }
+            
+            /* --- Button Styling --- */
+            .button-container {
+                text-align: center;
+                margin-top: 2rem;
+            }
+            .btn {
+                font-weight: 700;
+                font-size: 1rem;
+                padding: 0.75rem 2.5rem;
+                border: none;
+                border-radius: 50px; /* Pill-shaped */
+                color: #FFFFFF;
+                background: linear-gradient(to right, #6ECBFB 0%, #20A6F4 100%);
+                box-shadow: 0 4px 15px rgba(32, 166, 244, 0.3);
+                transition: all 0.2s ease-in-out;
+                cursor: pointer;
+            }
+            .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(32, 166, 244, 0.45);
+            }
+
+            /* --- Link Styling --- */
+            .switch-link {
+                text-align: center;
+                color: #8C99A9;
+                font-size: 0.95rem;
+                margin-top: 2rem;
+            }
+            .switch-link a {
+                color: #20A6F4;
+                font-weight: 600;
+                text-decoration: none;
+            }
+            
+            /* --- Error Message Styling --- */
+            .apexError {
+                background-color: #ffcccc;
+                border: 1px solid #ff0000;
+                border-radius: 8px;
+                padding: 1rem;
+                color: #b30000;
+                font-weight: bold;
+                margin-bottom: 1.5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <apex:form>
+            <div class="form-container">
+                <h2 class="title">Create Account</h2>
+                
+                <apex:pageMessages id="register-errors" />
+
+                <div class="name-grid">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <apex:inputText styleClass="input-text" value="{!firstName}"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <apex:inputText styleClass="input-text" value="{!lastName}"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <apex:inputText styleClass="input-text" value="{!email}"/>
+                </div>
+                
+                <div class="form-group">
+                    <label>Birthdate</label>
+                    <apex:input type="date" styleClass="input-text" value="{!birthdate}"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <apex:inputSecret styleClass="input-text" value="{!regPassword}"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <apex:inputSecret styleClass="input-text" value="{!confirmPassword}"/>
+                </div>
+                
+                <div class="button-container">
+                    <apex:commandButton styleClass="btn" action="{!doRegister}" value="CREATE ACCOUNT"/>
+                </div>
+
+                <div class="switch-link">
+                    Already have an account? 
+                    <apex:outputLink value="{!$Page.PulsePointLogin}">Sign In</apex:outputLink>
+                </div>
+            </div>
+        </apex:form>
+    </body>
+    </html>
+</apex:page>
