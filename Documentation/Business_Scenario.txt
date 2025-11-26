@@ -1,0 +1,5 @@
+Smart Healthcare Outreach Platform ==>
+
+To design and implement a Smart Healthcare Outreach Platform using Salesforce that supports community-based healthcare delivery. The system should enable health workers to record patient data, doctors to provide recommendations, and patients to receive alerts and view their health information. Automation should drive reminders for check-ups and immunizations, and Experience Cloud should support self-service and collaboration. Reporting tools will help identify regional health trends and gaps.
+
+
